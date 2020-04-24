@@ -1,0 +1,17 @@
+D:\Projekti C sharp\Png8BitWinforms\Png8BitCadenas\bin\Release\Png8BitCadenas.exe.config
+D:\Projekti C sharp\Png8BitWinforms\Png8BitCadenas\bin\Release\Png8BitCadenas.exe
+D:\Projekti C sharp\Png8BitWinforms\Png8BitCadenas\bin\Release\Png8BitCadenas.pdb
+D:\Projekti C sharp\Png8BitWinforms\Png8BitCadenas\bin\Release\nQuant.Core.dll
+D:\Projekti C sharp\Png8BitWinforms\Png8BitCadenas\bin\Release\nQuant.Core.pdb
+D:\Projekti C sharp\Png8BitWinforms\Png8BitCadenas\obj\Release\Png8BitCadenas.csprojAssemblyReference.cache
+D:\Projekti C sharp\Png8BitWinforms\Png8BitCadenas\obj\Release\Png8BitCadenas.MainWindow.resources
+D:\Projekti C sharp\Png8BitWinforms\Png8BitCadenas\obj\Release\Png8BitCadenas.Properties.Resources.resources
+D:\Projekti C sharp\Png8BitWinforms\Png8BitCadenas\obj\Release\Png8BitCadenas.csproj.GenerateResource.cache
+D:\Projekti C sharp\Png8BitWinforms\Png8BitCadenas\obj\Release\Png8BitCadenas.csproj.CoreCompileInputs.cache
+D:\Projekti C sharp\Png8BitWinforms\Png8BitCadenas\obj\Release\Png8BitCadenas.csproj.CopyComplete
+D:\Projekti C sharp\Png8BitWinforms\Png8BitCadenas\obj\Release\Png8BitCadenas.exe
+D:\Projekti C sharp\Png8BitWinforms\Png8BitCadenas\obj\Release\Png8BitCadenas.pdb
+D:\Projekti C sharp\Png8BitWinforms\Png8BitCadenas\bin\Release\Png8BitCadenas.exe.manifest
+D:\Projekti C sharp\Png8BitWinforms\Png8BitCadenas\bin\Release\Png8BitCadenas.application
+D:\Projekti C sharp\Png8BitWinforms\Png8BitCadenas\obj\Release\Png8BitCadenas.exe.manifest
+D:\Projekti C sharp\Png8BitWinforms\Png8BitCadenas\obj\Release\Png8BitCadenas.application

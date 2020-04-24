@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -66,6 +67,10 @@ namespace Png8BitCadenas
 
         private async Task ConvertAsync()
         {
+            var originalPictures = new List<string>();
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            var pictureManipulation = new PictureManipulation();
             var width = Convert.ToInt32(tbox_width.Text);
             var height = Convert.ToInt32(tbox_height.Text);
             
@@ -95,9 +100,11 @@ namespace Png8BitCadenas
                     foreach (var item in await filteredList.FilterPaths())
                     {
                         
-                        if (await PictureManipulation.ConvertPicture(item,width,height))
+                        if (pictureManipulation.ConvertPicture(item,width,height))
                         {
                             output += "Converted: " + item + "\n";
+                            tbox_output.Text = output;
+                            originalPictures.Add(item);
                             count++;
                         }
                     }
@@ -105,9 +112,11 @@ namespace Png8BitCadenas
                 //if it is a file use file convert
                 if (File.Exists((string)file))
                 {
-                    if (await PictureManipulation.ConvertPicture((string)file, width, height))
+                    if (pictureManipulation.ConvertPicture((string)file, width, height))
                     {
                         output += "Converted: " + file + "\n";
+                        tbox_output.Text = output;
+                        originalPictures.Add((string)file);
                         count++;
                     }
                 }
@@ -117,7 +126,21 @@ namespace Png8BitCadenas
                 } 
             }
 
+
+            if (chk_deleteOriginal.Checked==true)
+            {
+                foreach (var item in originalPictures)
+                {
+                    File.Delete(item);
+                }        
+
+                
+            }
+
             tbox_output.Text = output + "\n Pictures converted: "+count;
+            stopwatch.Stop();
+            tbox_output.Text += "\n Elapsed time : "+ (double)stopwatch.ElapsedMilliseconds / 1000 + " seconds";
+
 
         }
 
@@ -126,8 +149,9 @@ namespace Png8BitCadenas
 
         private async void btn_convert_Click(object sender, EventArgs e)
         {
-         await   Task.Factory.StartNew(() =>ConvertAsync());
-         //  await ConvertAsync();
+        // await   Task.Factory.StartNew(() =>ConvertAsync());
+        await   Task.Run(() => ConvertAsync());
+         // await ConvertAsync();
         }
 
         private void btn_removeFromList_Click(object sender, EventArgs e)
@@ -185,12 +209,21 @@ namespace Png8BitCadenas
 
         private void lbl_repotBug_Click(object sender, EventArgs e)
         {
-            string email = "e.hrskanovic@cadenas.de";
+            string email = "emanuel.hrskanovic@gmail.com";
 
-            System.Diagnostics.Process proc = new System.Diagnostics.Process();
+            Process proc = new Process();
             proc.StartInfo.FileName = $"mailto:{email}?subject=Png8Bit bug&body=";
             proc.Start();
         }
 
+      
+
+        private void lst_foldersFiles_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete )
+            {
+                lst_foldersFiles.Items.Remove(lst_foldersFiles.SelectedItem);
+            }
+        }
     }
 }

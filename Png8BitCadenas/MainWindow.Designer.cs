@@ -50,6 +50,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.chk_deleteOriginal = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.btn_removeFromList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_removeFormat)).BeginInit();
             this.SuspendLayout();
@@ -104,7 +105,7 @@
             this.chk_jpg.AutoSize = true;
             this.chk_jpg.Checked = true;
             this.chk_jpg.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk_jpg.Location = new System.Drawing.Point(123, 8);
+            this.chk_jpg.Location = new System.Drawing.Point(13, 52);
             this.chk_jpg.Margin = new System.Windows.Forms.Padding(4);
             this.chk_jpg.Name = "chk_jpg";
             this.chk_jpg.Size = new System.Drawing.Size(46, 20);
@@ -115,7 +116,7 @@
             // chk_png
             // 
             this.chk_png.AutoSize = true;
-            this.chk_png.Location = new System.Drawing.Point(123, 36);
+            this.chk_png.Location = new System.Drawing.Point(65, 52);
             this.chk_png.Margin = new System.Windows.Forms.Padding(4);
             this.chk_png.Name = "chk_png";
             this.chk_png.Size = new System.Drawing.Size(50, 20);
@@ -126,7 +127,7 @@
             // chk_bmp
             // 
             this.chk_bmp.AutoSize = true;
-            this.chk_bmp.Location = new System.Drawing.Point(123, 64);
+            this.chk_bmp.Location = new System.Drawing.Point(32, 73);
             this.chk_bmp.Margin = new System.Windows.Forms.Padding(4);
             this.chk_bmp.Name = "chk_bmp";
             this.chk_bmp.Size = new System.Drawing.Size(54, 20);
@@ -136,19 +137,18 @@
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(13, 9);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 16);
+            this.label3.Size = new System.Drawing.Size(102, 39);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Select formats : ";
+            this.label3.Text = "Select formats to convert from : ";
             // 
             // btn_removeFromList
             // 
             this.btn_removeFromList.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_removeFromList.Image = ((System.Drawing.Image)(resources.GetObject("btn_removeFromList.Image")));
-            this.btn_removeFromList.Location = new System.Drawing.Point(295, 112);
+            this.btn_removeFromList.Location = new System.Drawing.Point(295, 126);
             this.btn_removeFromList.Margin = new System.Windows.Forms.Padding(4);
             this.btn_removeFromList.Name = "btn_removeFromList";
             this.btn_removeFromList.Size = new System.Drawing.Size(20, 21);
@@ -160,7 +160,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(194, 8);
+            this.label2.Location = new System.Drawing.Point(122, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(121, 16);
             this.label2.TabIndex = 12;
@@ -168,7 +168,7 @@
             // 
             // tbox_additionalFormats
             // 
-            this.tbox_additionalFormats.Location = new System.Drawing.Point(322, 3);
+            this.tbox_additionalFormats.Location = new System.Drawing.Point(252, 6);
             this.tbox_additionalFormats.MaxLength = 6;
             this.tbox_additionalFormats.Name = "tbox_additionalFormats";
             this.tbox_additionalFormats.Size = new System.Drawing.Size(41, 22);
@@ -181,7 +181,7 @@
             this.btn_addFormat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btn_addFormat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_addFormat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_addFormat.Location = new System.Drawing.Point(369, 1);
+            this.btn_addFormat.Location = new System.Drawing.Point(299, 4);
             this.btn_addFormat.Name = "btn_addFormat";
             this.btn_addFormat.Size = new System.Drawing.Size(25, 26);
             this.btn_addFormat.TabIndex = 14;
@@ -193,7 +193,7 @@
             // 
             this.btn_removeFormat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_removeFormat.Image = ((System.Drawing.Image)(resources.GetObject("btn_removeFormat.Image")));
-            this.btn_removeFormat.Location = new System.Drawing.Point(265, 28);
+            this.btn_removeFormat.Location = new System.Drawing.Point(302, 28);
             this.btn_removeFormat.Margin = new System.Windows.Forms.Padding(4);
             this.btn_removeFormat.Name = "btn_removeFormat";
             this.btn_removeFormat.Size = new System.Drawing.Size(16, 20);
@@ -207,12 +207,14 @@
             this.lst_foldersFiles.AllowDrop = true;
             this.lst_foldersFiles.FormattingEnabled = true;
             this.lst_foldersFiles.ItemHeight = 16;
-            this.lst_foldersFiles.Location = new System.Drawing.Point(12, 110);
+            this.lst_foldersFiles.Location = new System.Drawing.Point(13, 126);
             this.lst_foldersFiles.Name = "lst_foldersFiles";
-            this.lst_foldersFiles.Size = new System.Drawing.Size(280, 228);
+            this.lst_foldersFiles.Size = new System.Drawing.Size(280, 212);
             this.lst_foldersFiles.TabIndex = 17;
             this.lst_foldersFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.listBoxFiles_DragDrop);
             this.lst_foldersFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.listBoxFiles_DragEnter);
+            this.lst_foldersFiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lst_foldersFiles_KeyDown);
+            
             // 
             // lbl_dropFiles
             // 
@@ -233,9 +235,9 @@
             // 
             this.lst_formats.FormattingEnabled = true;
             this.lst_formats.ItemHeight = 16;
-            this.lst_formats.Location = new System.Drawing.Point(195, 28);
+            this.lst_formats.Location = new System.Drawing.Point(252, 28);
             this.lst_formats.Name = "lst_formats";
-            this.lst_formats.Size = new System.Drawing.Size(63, 68);
+            this.lst_formats.Size = new System.Drawing.Size(41, 68);
             this.lst_formats.TabIndex = 19;
             // 
             // tbox_width
@@ -283,12 +285,23 @@
             this.label6.TabIndex = 25;
             this.label6.Text = "Custom size :";
             // 
+            // chk_deleteOriginal
+            // 
+            this.chk_deleteOriginal.AutoSize = true;
+            this.chk_deleteOriginal.Location = new System.Drawing.Point(13, 100);
+            this.chk_deleteOriginal.Name = "chk_deleteOriginal";
+            this.chk_deleteOriginal.Size = new System.Drawing.Size(164, 20);
+            this.chk_deleteOriginal.TabIndex = 26;
+            this.chk_deleteOriginal.Text = "Delete original pictures";
+            this.chk_deleteOriginal.UseVisualStyleBackColor = true;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(791, 386);
+            this.Controls.Add(this.chk_deleteOriginal);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -348,6 +361,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox chk_deleteOriginal;
     }
 }
 

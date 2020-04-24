@@ -11,33 +11,37 @@ using System.Threading.Tasks;
 namespace Png8BitCadenas
 {
 
-    public static class PictureManipulation
+    public  class PictureManipulation  : IDisposable
     {
-        public static async Task<bool> ConvertPicture(string path, int width=400, int height=400)
+        public  bool ConvertPicture(string path, int width=400, int height=400)
         {
+
             FileInfo fileInfo = new FileInfo(path);
             var newPath = new StringBuilder(path);
            
             newPath.Remove(newPath.Length - fileInfo.Extension.Length, fileInfo.Extension.Length);
             newPath.Append(".png");
-            var originalImage = new Bitmap(path);
-            if (originalImage.Size != new Size(width, height) || originalImage.PixelFormat != PixelFormat.Format32bppArgb)
+            using (var originalImage = new Bitmap(path))
             {
-                Bitmap newImage = await OriginalImageScale(originalImage, width, height);
-                if (newPath.ToString() == path)
+                if (originalImage.Size != new Size(width, height) || originalImage.PixelFormat != PixelFormat.Format32bppArgb)
                 {
-                    var lastIndex = newPath.ToString().LastIndexOf(@"\");
-                    var random = new Random();
-                    newPath.Insert(lastIndex+1, random.Next(0,6000).ToString());
-                }
+                    Bitmap newImage = OriginalImageScale(originalImage, width, height);
+                    if (newPath.ToString() == path)
+                    {
+                        var lastIndex = newPath.ToString().LastIndexOf(@"\");
+                        var random = new Random();
+                        newPath.Insert(lastIndex + 1, random.Next(0, 6000).ToString());
+                    }
 
-             await   To8BitPng(newPath.ToString(), newImage);
-                return await Task.FromResult(true);
+                    To8BitPng(newPath.ToString(), newImage);
+                    return true;
+                }
+                return false;
             }
-            return await Task.FromResult(false);
+            
         }
 
-        public static async Task To8BitPng(string path, Bitmap image)
+        public  void  To8BitPng(string path, Bitmap image)
         {
             try
             {
@@ -48,7 +52,6 @@ namespace Png8BitCadenas
 
                 }
 
-                await Task.CompletedTask;
             }
             catch (Exception ex)
             {
@@ -59,7 +62,7 @@ namespace Png8BitCadenas
         }
 
         //returns original image scaled
-        public static async Task<Bitmap> OriginalImageScale(Bitmap image, float width, float height)
+        public  Bitmap OriginalImageScale(Bitmap image, float width, float height)
         {
             float scale = Math.Min(width / image.Width, height / image.Height);
             var brush = new SolidBrush(Color.White);
@@ -74,10 +77,10 @@ namespace Png8BitCadenas
                 graph.FillRectangle(brush, new RectangleF(0, 0, width, height));
                 graph.DrawImage(image, ((int)width - scaleWidth) / 2, ((int)height - scaleHeight) / 2, scaleWidth, scaleHeight);
             }
-            return await Task.FromResult(bmp);
+            return bmp;
         }
 
-        public static bool IsFileLocked(FileInfo file)
+        public  bool IsFileLocked(FileInfo file)
         {
             FileStream stream = null;
 
@@ -101,6 +104,11 @@ namespace Png8BitCadenas
 
             //file is not locked
             return false;
+        }
+
+        public void Dispose()
+        {
+            Dispose();
         }
     }
 }
